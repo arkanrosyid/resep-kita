@@ -1,0 +1,24 @@
+ion-card {
+  font-family: "Roboto", sans-serif;
+}
+
+.bgcolor {
+  --background: linear-gradient(
+    45deg,
+    rgba(176, 82, 201, 1) 0%,
+    rgba(201, 53, 53, 1) 50%,
+    rgba(217, 205, 20, 1) 100%
+  );
+}
+
+.card-size {
+  padding: 2rem;
+}
+
+.login-button {
+  padding: 0.3rem 0rem;
+}
+
+.lefting {
+  margin-left: -1rem;
+}

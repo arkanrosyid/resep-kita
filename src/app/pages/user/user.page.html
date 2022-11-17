@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Resep Kita</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list [inset]="true" color="danger">
+    <ion-item color="danger">
+      <ion-avatar slot="start"
+        ><ion-img
+          src="https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2022/02/19/1407476621.jpg"
+        ></ion-img> </ion-avatar
+      ><ion-label
+        ><h1>Arnold Poernomo</h1>
+        <p>Professional Chef</p></ion-label
+      >
+    </ion-item>
+  </ion-list>
+
+  <ion-list [inset]="true" color="danger">
+    <ion-item color="danger"
+      ><ion-icon name="build-outline"></ion-icon
+      ><ion-label>Edit Profil</ion-label></ion-item
+    >
+    <ion-item color="danger"
+      ><ion-icon name="log-out-outline"></ion-icon
+      ><ion-label>Logout</ion-label></ion-item
+    >
+  </ion-list>
+</ion-content>

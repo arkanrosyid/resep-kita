@@ -25,6 +25,19 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+ion-header ion-content {
+  font-family: "Roboto", sans-serif;
+}
+
+ion-content {
+  // overwrite inline styles
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .centering {
   display: flex;
   justify-content: center;

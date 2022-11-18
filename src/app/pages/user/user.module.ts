@@ -1,4 +1,4 @@
-import { LoginStatusComponent } from './../../components/login-status/login-status.component';
+import { UserPageComponent } from './../../components/user-page/user-page.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,6 +11,6 @@ import { UserPage } from './user.page';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, UserPageRoutingModule],
-  declarations: [UserPage, LoginStatusComponent],
+  declarations: [UserPage, UserPageComponent],
 })
 export class UserPageModule {}

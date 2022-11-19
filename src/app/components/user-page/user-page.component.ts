@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -11,7 +12,11 @@ export class UserPageComponent implements OnInit {
   @Input() nama: string;
   @Input() keahlian: string;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  login() {
+    this.router.navigate(['login']);
+  }
 }

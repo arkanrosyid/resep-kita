@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./load.page.scss'],
 })
 export class LoadPage implements OnInit {
-
-  constructor() { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
+    setTimeout(() => {
+      this.router.navigate(['login']);
+    }, 1000);
   }
-
 }

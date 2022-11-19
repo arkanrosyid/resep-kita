@@ -23,8 +23,14 @@
       </ion-card-content>
 
       <div class="all-right">
-        <ion-button color="danger" fill="clear">Register</ion-button>
-        <ion-button class="login-button" color="danger" fill="solid"
+        <ion-button color="danger" fill="clear" (click)="register()"
+          >Register</ion-button
+        >
+        <ion-button
+          class="login-button"
+          color="danger"
+          fill="solid"
+          (click)="login()"
           >login</ion-button
         >
       </div>

@@ -26,6 +26,18 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
+
+        <ion-list lines="full">
+          <ion-item button (click)="user()">
+            <ion-label>Profile</ion-label>
+          </ion-item>
+          <ion-item button (click)="tulisResep()">
+            <ion-label>Tulis Resep</ion-label>
+          </ion-item>
+          <ion-item button (click)="resepSaya()">
+            <ion-label>Resep Saya</ion-label>
+          </ion-item>
+        </ion-list>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

@@ -28,4 +28,12 @@ describe('UserPageComponent', () => {
 
     expect(router.navigate).toHaveBeenCalledWith(['login']);
   });
+
+  it('should go to edit-user', () => {
+    spyOn(router, 'navigate');
+
+    component.userEdit();
+
+    expect(router.navigate).toHaveBeenCalledWith(['user-edit']);
+  });
 });

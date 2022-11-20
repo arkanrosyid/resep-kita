@@ -12,7 +12,7 @@
 </ion-list>
 
 <ion-list *ngIf="hasToken" [inset]="true" color="danger">
-  <ion-item button color="danger"
+  <ion-item button color="danger" (click)="userEdit()"
     ><ion-icon name="build-outline"></ion-icon
     ><ion-label>Edit Profil</ion-label></ion-item
   >

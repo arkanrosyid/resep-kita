@@ -34,6 +34,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/user/user.module').then((m) => m.UserPageModule),
   },
+  {
+    path: 'user-edit',
+    loadChildren: () => import('./pages/user-edit/user-edit.module').then( m => m.UserEditPageModule)
+  },
 ];
 
 @NgModule({

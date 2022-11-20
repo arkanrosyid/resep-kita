@@ -19,4 +19,8 @@ export class UserPageComponent implements OnInit {
   login() {
     this.router.navigate(['login']);
   }
+
+  userEdit() {
+    this.router.navigate(['user-edit']);
+  }
 }

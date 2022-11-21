@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons (click)="home()" slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title><p>Resep</p></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  ><app-resep-page
+    makanan="Rendang"
+    jenis="Resep Nusantara"
+    bahan="Sapi"
+    resep="Masaklah dengan...."
+  ></app-resep-page>
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons (click)="home()" slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title>Tulis Resep</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Buat Resep Anda Sendiri</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Nama Resep </ion-label><br />
+      <ion-input placeholder="Ketik Disini"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Bahan</ion-label>
+      <ion-textarea
+        [clearOnEdit]="true"
+        [autoGrow]="true"
+        placeholder="Ketik Disini"
+      ></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Langkah</ion-label>
+      <ion-textarea
+        [clearOnEdit]="true"
+        [autoGrow]="true"
+        placeholder="Ketik Disini"
+      ></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder="Jenis Makanan">
+        <ion-select-option value="nusantara">Resep Nusantara</ion-select-option>
+        <ion-select-option value="mancanegara"
+          >Resep Mancanegara</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-button
+      class="ion-margin-top"
+      color="danger"
+      expand="full"
+      (click)="home()"
+      >Submit</ion-button
+    >
+  </ion-list></ion-content
+>

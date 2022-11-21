@@ -36,7 +36,36 @@ const routes: Routes = [
   },
   {
     path: 'user-edit',
-    loadChildren: () => import('./pages/user-edit/user-edit.module').then( m => m.UserEditPageModule)
+    loadChildren: () =>
+      import('./pages/user-edit/user-edit.module').then(
+        (m) => m.UserEditPageModule
+      ),
+  },
+  {
+    path: 'tulis-resep',
+    loadChildren: () =>
+      import('./pages/tulis-resep/tulis-resep.module').then(
+        (m) => m.TulisResepPageModule
+      ),
+  },
+  {
+    path: 'resep-saya',
+    loadChildren: () =>
+      import('./pages/resep-saya/resep-saya.module').then(
+        (m) => m.ResepSayaPageModule
+      ),
+  },
+  {
+    path: 'resep',
+    loadChildren: () => import('./pages/resep/resep.module').then( m => m.ResepPageModule)
+  },
+  {
+    path: 'resep-nusantara',
+    loadChildren: () => import('./pages/resep-nusantara/resep-nusantara.module').then( m => m.ResepNusantaraPageModule)
+  },
+  {
+    path: 'resep-mancanegara',
+    loadChildren: () => import('./pages/resep-mancanegara/resep-mancanegara.module').then( m => m.ResepMancanegaraPageModule)
   },
 ];
 

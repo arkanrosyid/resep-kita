@@ -1,5 +1,6 @@
+import { AppRoutingModule } from './../../app-routing.module';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ResepMancanegaraPage } from './resep-mancanegara.page';
@@ -12,7 +13,7 @@ describe('ResepMancanegaraPage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ResepMancanegaraPage],
-      imports: [IonicModule.forRoot(), RouterModule],
+      imports: [IonicModule.forRoot(), AppRoutingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ResepMancanegaraPage);

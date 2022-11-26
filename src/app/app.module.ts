@@ -1,3 +1,5 @@
+import { LoadingComponent } from './components/loading/loading.component';
+import { AppStoreModule } from './store/AppStoreModule';
 import { MenuPageComponent } from './components/menu-page/menu-page.component';
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { NgModule } from '@angular/core';
@@ -8,10 +10,19 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
-  declarations: [AppComponent, MenuPageComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  declarations: [AppComponent, MenuPageComponent, LoadingComponent],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    StoreModule.forRoot({}, {}),
+    ...AppStoreModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

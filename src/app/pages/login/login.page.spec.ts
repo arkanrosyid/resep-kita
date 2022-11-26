@@ -1,6 +1,12 @@
 import { AppRoutingModule } from './../../app-routing.module';
 import { Router } from '@angular/router';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+  waitForAsync,
+} from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { LoginPage } from './login.page';
@@ -29,13 +35,15 @@ describe('LoginPage', () => {
     expect(component.form).not.toBeUndefined();
   });
 
-  it('should go to home screen', () => {
+  it('should go to home screen', fakeAsync(() => {
     spyOn(router, 'navigate');
 
     component.login();
 
+    tick(3500);
+
     expect(router.navigate).toHaveBeenCalledWith(['home']);
-  });
+  }));
 
   it('should go to register', () => {
     spyOn(router, 'navigate');

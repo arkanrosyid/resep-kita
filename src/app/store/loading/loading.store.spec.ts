@@ -1,10 +1,11 @@
+import { appInitialState } from './../AppInitialState';
 import { createAction } from '@ngrx/store';
 import { hide, show } from './loading.actions';
 import { loadingReducer } from './loading.reducers';
 import { LoadingState } from './LoadingState';
 describe('Loading store', () => {
   it('show', () => {
-    const initialState: LoadingState = { show: false };
+    const initialState: LoadingState = appInitialState.loading;
     const newState = loadingReducer(initialState, show());
 
     expect(newState).toEqual({ show: true });

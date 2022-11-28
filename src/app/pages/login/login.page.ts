@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppState } from 'src/app/store/AppState';
 import { Store } from '@ngrx/store';
+import { login } from 'src/app/store/login/login.actions';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginPage implements OnInit {
   }
 
   login() {
+    this.store.dispatch(login());
     this.store.dispatch(show());
     setTimeout(() => {
       this.store.dispatch(hide());

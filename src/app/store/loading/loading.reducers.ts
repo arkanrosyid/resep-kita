@@ -1,8 +1,9 @@
+import { appInitialState } from './../AppInitialState';
 import { LoadingState } from './LoadingState';
 import { show, hide } from './loading.actions';
 import { createReducer, on } from '@ngrx/store';
 
-const initialState: LoadingState = { show: false };
+const initialState: LoadingState = appInitialState.loading;
 
 const reducer = createReducer(
   initialState,

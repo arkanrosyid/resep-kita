@@ -1,7 +1,7 @@
 import { appInitialState } from './../AppInitialState';
 import { login, loginSuccess, loginFail } from './login.actions';
 import { createReducer, on } from '@ngrx/store';
-import { LoginState } from './LoginState';
+import { LoginState } from './loginState';
 
 const initialState: LoginState = appInitialState.login;
 

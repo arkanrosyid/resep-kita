@@ -2,7 +2,7 @@ import { User } from './../../model/user/User';
 import { appInitialState } from './../AppInitialState';
 import { login, loginSuccess, loginFail } from './login.actions';
 import { loginReducer } from './login.reducers';
-import { LoginState } from './LoginState';
+import { LoginState } from './loginState';
 
 describe('Login store', () => {
   it('login', () => {

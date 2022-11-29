@@ -1,7 +1,6 @@
 import { LoadingComponent } from './components/loading/loading.component';
 import { AppStoreModule } from './store/AppStoreModule';
 import { MenuPageComponent } from './components/menu-page/menu-page.component';
-import { UserPageComponent } from './components/user-page/user-page.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';

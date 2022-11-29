@@ -1,3 +1,5 @@
+import { environment } from './../../../environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import { AuthService } from './../../services/auth/auth.service';
 import { hide } from './../../store/loading/loading.actions';
@@ -15,7 +17,7 @@ import { IonicModule, ToastController } from '@ionic/angular';
 
 import { LoginPage } from './login.page';
 import { ReactiveFormsModule } from '@angular/forms';
-import { of, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { User } from 'src/app/model/user/User';
 
 describe('LoginPage', () => {
@@ -37,6 +39,7 @@ describe('LoginPage', () => {
         StoreModule.forRoot([]),
         StoreModule.forFeature('loading', loadingReducer),
         StoreModule.forFeature('login', loginReducer),
+        AngularFireModule.initializeApp(environment.firebaseConfig),
       ],
     }).compileComponents();
 
@@ -58,6 +61,7 @@ describe('LoginPage', () => {
   });
 
   it('should show loading screen and start login when logging in', () => {
+    spyOn(authService, 'login').and.returnValue(new Observable(() => {}));
     fixture.detectChanges();
 
     component.form.get('email').setValue('valid@email.com');

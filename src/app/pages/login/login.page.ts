@@ -85,6 +85,10 @@ export class LoginPage implements OnInit {
         color: 'warning',
       });
       toaster.present();
+
+      setTimeout(() => {
+        toaster.dismiss();
+      }, 3000);
     }
   }
 }

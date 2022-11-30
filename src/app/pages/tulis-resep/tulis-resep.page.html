@@ -14,16 +14,12 @@
     </ion-list-header>
     <ion-item>
       <ion-label>Nama Resep </ion-label><br />
-      <ion-input placeholder="Ketik Disini" [(ngModel)]="judul"></ion-input>
+      <ion-input placeholder="Ketik Disini"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label floating>Foto Resep</ion-label>
-      <ion-input type="file" (change)="onFileSelect($event.target)"></ion-input>
-    </ion-item>
+
     <ion-item>
       <ion-label>Bahan</ion-label>
       <ion-textarea
-        [(ngModel)]="bahan"
         [clearOnEdit]="true"
         [autoGrow]="true"
         placeholder="Ketik Disini"
@@ -31,15 +27,14 @@
     </ion-item>
     <ion-item>
       <ion-label>Langkah</ion-label>
-      <ion-textarea 
-        [(ngModel)]="langkah"
+      <ion-textarea
         [clearOnEdit]="true"
         [autoGrow]="true"
         placeholder="Ketik Disini"
       ></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-select placeholder="Jenis Makanan" [(ngModel)]="jenis">
+      <ion-select placeholder="Jenis Makanan">
         <ion-select-option value="nusantara">Resep Nusantara</ion-select-option>
         <ion-select-option value="mancanegara"
           >Resep Mancanegara</ion-select-option
@@ -50,9 +45,8 @@
       class="ion-margin-top"
       color="danger"
       expand="full"
-      (click)="createResep()"
+      (click)="home()"
       >Submit</ion-button
     >
-   
   </ion-list></ion-content
 >

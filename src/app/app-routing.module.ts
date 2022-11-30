@@ -82,7 +82,11 @@ const routes: Routes = [
         (m) => m.ResepMancanegaraPageModule
       ),
     canLoad: [AuthGuard],
+  },  {
+    path: 'resep-edit',
+    loadChildren: () => import('./resep-edit/resep-edit.module').then( m => m.ResepEditPageModule)
   },
+
 ];
 
 @NgModule({

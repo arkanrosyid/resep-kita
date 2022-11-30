@@ -1,3 +1,4 @@
+import { UserRegister } from './../../model/user/UserRegister';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/model/user/User';
@@ -22,10 +23,22 @@ export class AuthService {
               observer.complete();
             })
             .catch((error) => {
-              observer.error('Email or Password Wrong');
+              observer.error(error);
               observer.complete();
             });
         });
+    });
+  }
+
+  register(userRegister: UserRegister): Observable<void> {
+    return new Observable<void>((observer) => {
+      setTimeout(() => {
+        if (userRegister.email === 'error@email.com') {
+          observer.error({ message: 'email sudah dipakai' });
+        } else {
+          observer.next();
+        }
+      }, 3000);
     });
   }
 }

@@ -1,11 +1,7 @@
+import { loginFail, loginSuccess } from './../../store/login/login.actions';
 import { environment } from './../../../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
-import { AuthService } from './../../services/auth/auth.service';
-import { hide } from './../../store/loading/loading.actions';
-import { LoadingState } from './../../store/loading/LoadingState';
-/* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable @typescript-eslint/naming-convention */
 import { AppState } from './../../store/AppState';
 import { loginReducer } from './../../store/login/login.reducers';
 import { loadingReducer } from './../../store/loading/loading.reducers';
@@ -17,8 +13,8 @@ import { IonicModule, ToastController } from '@ionic/angular';
 
 import { LoginPage } from './login.page';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Observable, of, throwError } from 'rxjs';
 import { User } from 'src/app/model/user/User';
+import { login } from 'src/app/store/login/login.actions';
 
 describe('LoginPage', () => {
   let component: LoginPage;
@@ -26,7 +22,6 @@ describe('LoginPage', () => {
   let router: Router;
   let page;
   let store: Store<AppState>;
-  let authService: AuthService;
   let toastController: ToastController;
 
   beforeEach(waitForAsync(() => {
@@ -46,7 +41,6 @@ describe('LoginPage', () => {
     fixture = TestBed.createComponent(LoginPage);
     router = TestBed.get(Router);
     store = TestBed.get(Store);
-    authService = TestBed.get(AuthService);
     toastController = TestBed.get(ToastController);
 
     page = fixture.debugElement.nativeElement;
@@ -60,10 +54,7 @@ describe('LoginPage', () => {
     expect(component.form).not.toBeUndefined();
   });
 
-  it('should show loading screen and start login when logging in', () => {
-    spyOn(authService, 'login').and.returnValue(new Observable(() => {}));
-    fixture.detectChanges();
-
+  it('show loading screen and start login when logging in', () => {
     component.form.get('email').setValue('valid@email.com');
     component.form.get('password').setValue('anyPassword');
     page.querySelector('#loginButton').click();
@@ -75,14 +66,15 @@ describe('LoginPage', () => {
     });
   });
 
-  it('should hide loading and change status to logged in, and then go to home page', () => {
+  it('hide loading and change status to logged in, and go to home page', () => {
     spyOn(router, 'navigate');
-    spyOn(authService, 'login').and.returnValue(of(new User()));
+
     fixture.detectChanges();
 
-    component.form.get('email').setValue('valid@email.com');
-    component.form.get('password').setValue('anyPassword');
-    page.querySelector('#loginButton').click();
+    store.dispatch(
+      login({ email: 'valid@email.com', password: 'anyPassword' })
+    );
+    store.dispatch(loginSuccess({ user: new User() }));
     store.select('loading').subscribe((loadingState) => {
       expect(loadingState.show).toBeFalsy();
     });
@@ -92,18 +84,15 @@ describe('LoginPage', () => {
     expect(router.navigate).toHaveBeenCalledWith(['home']);
   });
 
-  it('should hide loading and show error message', () => {
-    spyOn(authService, 'login').and.returnValue(
-      throwError({ message: 'error' })
-    );
+  it('hide loading and show error message', () => {
     spyOn(toastController, 'create').and.returnValue(
       <any>Promise.resolve({ present: () => {} })
     );
     fixture.detectChanges();
-
-    component.form.get('email').setValue('valid@email.com');
-    component.form.get('password').setValue('anyPassword');
-    page.querySelector('#loginButton').click();
+    store.dispatch(
+      login({ email: 'valid@email.com', password: 'anyPassword' })
+    );
+    store.dispatch(loginFail({ error: { message: 'error message' } }));
 
     store.select('loading').subscribe((loadingState) => {
       expect(loadingState.show).toBeFalsy();

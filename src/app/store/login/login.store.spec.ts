@@ -7,7 +7,10 @@ import { LoginState } from './loginState';
 describe('Login store', () => {
   it('login', () => {
     const initialState: LoginState = appInitialState.login;
-    const newState = loginReducer(initialState, login());
+    const newState = loginReducer(
+      initialState,
+      login({ email: 'valid@email.com', password: 'anyPassword' })
+    );
     expect(newState).toEqual({
       ...initialState,
       error: null,

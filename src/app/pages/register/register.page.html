@@ -4,51 +4,111 @@
 
 <ion-content class="bgcolor">
   <div class="centering">
-    <ion-card class="card-size">
-      <ion-card-header>
-        <ion-card-subtitle>Register</ion-card-subtitle>
-        <ion-card-title color="danger">Resep Kita</ion-card-title>
-      </ion-card-header>
+    <form [formGroup]="registerForm.getForm()">
+      <ion-card class="card-size">
+        <ion-card-header>
+          <ion-card-subtitle>Register</ion-card-subtitle>
+          <ion-card-title color="danger">Resep Kita</ion-card-title>
+        </ion-card-header>
 
-      <ion-card-content class="lefting"
-        ><ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input type="email" placeholder="Masukan Email"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" placeholder="Masukan Password"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Confirm Password</ion-label>
-          <ion-input type="password" placeholder="Masukan Password"></ion-input>
-        </ion-item>
-
-        <ion-list class="ion-padding-top">
+        <ion-card-content class="lefting">
           <ion-item>
-            <ion-select placeholder="Kemapuan">
-              <ion-select-option value="pemula">Pemula</ion-select-option>
-              <ion-select-option value="homecook">Home Cook</ion-select-option>
-              <ion-select-option value="chef">Chef</ion-select-option>
-            </ion-select>
+            <ion-label position="floating">Nama</ion-label>
+            <ion-input
+              type="username"
+              placeholder="Masukan Nama"
+              formControlName="name"
+            ></ion-input>
           </ion-item>
-        </ion-list>
-      </ion-card-content>
+          <app-error-message
+            [field]="registerForm.getForm().get('name')"
+            error="required"
+            message="Nama harus diisi"
+          ></app-error-message>
 
-      <div class="all-right">
-        <ion-button color="danger" fill="clear" (click)="login()"
-          >Login</ion-button
-        >
-        <ion-button
-          class="login-button"
-          color="danger"
-          fill="solid"
-          (click)="register()"
-          >Register</ion-button
-        >
-      </div>
-    </ion-card>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input
+              type="email"
+              placeholder="Masukan Email"
+              formControlName="email"
+            ></ion-input>
+          </ion-item>
+          <app-error-message
+            [field]="registerForm.getForm().get('email')"
+            error="required"
+            message="Email harus diisi"
+          ></app-error-message>
+          <app-error-message
+            [field]="registerForm.getForm().get('email')"
+            error="email"
+            message="Email Invalid"
+          ></app-error-message>
+
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input
+              type="password"
+              placeholder="Masukan Password"
+              formControlName="password"
+            ></ion-input>
+          </ion-item>
+          <app-error-message
+            [field]="registerForm.getForm().get('password')"
+            error="required"
+            message="password harus diisi"
+          ></app-error-message>
+          <app-error-message
+            [field]="registerForm.getForm().get('password')"
+            error="minlength"
+            message="Minimal 6 Karakter"
+          ></app-error-message>
+
+          <ion-item>
+            <ion-label position="floating">Konfirmasi Password</ion-label>
+            <ion-input
+              type="password"
+              placeholder="Masukan Password"
+              formControlName="confirmPassword"
+            ></ion-input>
+          </ion-item>
+          <app-error-message
+            [field]="registerForm.getForm().get('confirmPassword')"
+            error="isntMaching"
+            message="Password berbeda"
+          ></app-error-message>
+
+          <ion-list class="ion-padding-top">
+            <ion-item>
+              <ion-select placeholder="Kemapuan" formControlName="kemampuan">
+                <ion-select-option value="pemula">Pemula</ion-select-option>
+                <ion-select-option value="homecook"
+                  >Home Cook</ion-select-option
+                >
+                <ion-select-option value="chef">Chef</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <app-error-message
+            [field]="registerForm.getForm().get('kemampuan')"
+            error="required"
+            message="Kemampuan harus diisi"
+          ></app-error-message>
+        </ion-card-content>
+
+        <div class="all-right">
+          <ion-button color="danger" fill="clear" (click)="login()"
+            >Login</ion-button
+          >
+          <ion-button
+            class="login-button"
+            color="danger"
+            fill="solid"
+            (click)="register()"
+            >Register</ion-button
+          >
+        </div>
+      </ion-card>
+    </form>
   </div>
 </ion-content>

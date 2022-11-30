@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ErrorMessageComponent implements OnInit {
   @Input() message: string;
-  @Input() field: FormGroup;
+  @Input() field: AbstractControl;
   @Input() error: string;
 
   constructor() {}

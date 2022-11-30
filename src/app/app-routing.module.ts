@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth/auth-guard';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -28,11 +29,13 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomePageModule),
+    canLoad: [AuthGuard],
   },
   {
     path: 'user',
     loadChildren: () =>
       import('./pages/user/user.module').then((m) => m.UserPageModule),
+    canLoad: [AuthGuard],
   },
   {
     path: 'user-edit',
@@ -40,6 +43,7 @@ const routes: Routes = [
       import('./pages/user-edit/user-edit.module').then(
         (m) => m.UserEditPageModule
       ),
+    canLoad: [AuthGuard],
   },
   {
     path: 'tulis-resep',
@@ -47,6 +51,7 @@ const routes: Routes = [
       import('./pages/tulis-resep/tulis-resep.module').then(
         (m) => m.TulisResepPageModule
       ),
+    canLoad: [AuthGuard],
   },
   {
     path: 'resep-saya',
@@ -54,18 +59,29 @@ const routes: Routes = [
       import('./pages/resep-saya/resep-saya.module').then(
         (m) => m.ResepSayaPageModule
       ),
+    canLoad: [AuthGuard],
   },
   {
     path: 'resep',
-    loadChildren: () => import('./pages/resep/resep.module').then( m => m.ResepPageModule)
+    loadChildren: () =>
+      import('./pages/resep/resep.module').then((m) => m.ResepPageModule),
+    canLoad: [AuthGuard],
   },
   {
     path: 'resep-nusantara',
-    loadChildren: () => import('./pages/resep-nusantara/resep-nusantara.module').then( m => m.ResepNusantaraPageModule)
+    loadChildren: () =>
+      import('./pages/resep-nusantara/resep-nusantara.module').then(
+        (m) => m.ResepNusantaraPageModule
+      ),
+    canLoad: [AuthGuard],
   },
   {
     path: 'resep-mancanegara',
-    loadChildren: () => import('./pages/resep-mancanegara/resep-mancanegara.module').then( m => m.ResepMancanegaraPageModule)
+    loadChildren: () =>
+      import('./pages/resep-mancanegara/resep-mancanegara.module').then(
+        (m) => m.ResepMancanegaraPageModule
+      ),
+    canLoad: [AuthGuard],
   },
 ];
 

@@ -1,3 +1,4 @@
+import { ErrorMessageModule } from './../../components/error-message/error-message-module';
 import { ErrorMessageComponent } from './../../components/error-message/error-message.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,7 +17,8 @@ import { LoginPage } from './login.page';
     IonicModule,
     LoginPageRoutingModule,
     ReactiveFormsModule,
+    ErrorMessageModule,
   ],
-  declarations: [LoginPage, ErrorMessageComponent],
+  declarations: [LoginPage],
 })
 export class LoginPageModule {}

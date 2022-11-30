@@ -1,10 +1,6 @@
-import { ToastController } from '@ionic/angular';
-import {
-  login,
-  loginSuccess,
-  loginFail,
-} from './../../store/login/login.actions';
-import { AuthService } from './../../services/auth/auth.service';
+import { UserRegister } from './../../model/user/UserRegister';
+import { ToastController, NavController } from '@ionic/angular';
+import { login } from './../../store/login/login.actions';
 import { LoginState } from './../../store/login/loginState';
 import { show, hide } from './../../store/loading/loading.actions';
 import { LoginPageForm } from './login.page.form';
@@ -25,15 +21,14 @@ export class LoginPage implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private store: Store<AppState>,
-    private authservice: AuthService,
-    private toastcontroller: ToastController
+    private toastcontroller: ToastController,
+    private navController: NavController
   ) {}
 
   ngOnInit() {
     this.form = new LoginPageForm(this.formBuilder).createForm();
 
     this.store.select('login').subscribe((loginState) => {
-      this.onIsLoggingIn(loginState);
       this.toggleLoading(loginState);
       this.onIsLoggedIn(loginState);
       this.onError(loginState);
@@ -41,26 +36,16 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    this.store.dispatch(login());
+    this.store.dispatch(
+      login({
+        email: this.form.get('email').value,
+        password: this.form.get('password').value,
+      })
+    );
   }
 
   register() {
     this.router.navigate(['register']);
-  }
-
-  private onIsLoggingIn(loginState: LoginState) {
-    if (loginState.isLoggingIn === true) {
-      const email = this.form.get('email').value;
-      const password = this.form.get('password').value;
-      this.authservice.login(email, password).subscribe(
-        (user) => {
-          this.store.dispatch(loginSuccess({ user }));
-        },
-        (error) => {
-          this.store.dispatch(loginFail({ error }));
-        }
-      );
-    }
   }
 
   private toggleLoading(loginState: LoginState) {
@@ -73,7 +58,7 @@ export class LoginPage implements OnInit {
 
   private onIsLoggedIn(loginState: LoginState) {
     if (loginState.isLoggedIn) {
-      this.router.navigate(['home']);
+      this.navController.navigateRoot(['home']);
     }
   }
 

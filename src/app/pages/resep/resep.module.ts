@@ -1,3 +1,4 @@
+import { ResepComponentModule } from './../../components/resep-page/resep-page-module';
 import { ResepPageComponent } from '../../components/resep-page/resep-page.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,7 +11,13 @@ import { ResepPageRoutingModule } from './resep-routing.module';
 import { ResepPage } from './resep.page';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, ResepPageRoutingModule],
-  declarations: [ResepPage, ResepPageComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    ResepPageRoutingModule,
+    ResepComponentModule,
+  ],
+  declarations: [ResepPage],
 })
 export class ResepPageModule {}

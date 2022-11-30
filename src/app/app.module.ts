@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 @NgModule({
   declarations: [AppComponent, MenuPageComponent, LoadingComponent],
@@ -21,6 +21,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     StoreModule.forRoot({}, {}),
     ...AppStoreModule,

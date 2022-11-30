@@ -21,20 +21,4 @@ describe('RegisterPage', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
-
-  it('should go to home page', () => {
-    spyOn(router, 'navigate');
-
-    component.register();
-
-    expect(router.navigate).toHaveBeenCalledWith(['home']);
-  });
-
-  it('should go to login page', () => {
-    spyOn(router, 'navigate');
-
-    component.login();
-
-    expect(router.navigate).toHaveBeenCalledWith(['login']);
-  });
 });

@@ -1,4 +1,4 @@
-import { HomePageComponent } from '../../components/home-page/home-page.component';
+import { HomeComponentModule } from './../../components/home-page/home-page-module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +10,13 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule],
-  declarations: [HomePage, HomePageComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    HomePageRoutingModule,
+    HomeComponentModule,
+  ],
+  declarations: [HomePage],
 })
 export class HomePageModule {}

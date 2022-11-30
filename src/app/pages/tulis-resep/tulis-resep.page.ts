@@ -1,5 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-tulis-resep',
@@ -7,16 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tulis-resep.page.scss'],
 })
 export class TulisResepPage implements OnInit {
-  constructor(private router: Router) {}
+  public obj: any = {};
+  judul = '';
+  bahan = '';
+  langkah = '';
+  jenis = '';
+
+  constructor(
+    private router: Router,
+    private afs: AngularFirestore,
+    public angularFireAuth: AngularFireAuth
+  ) {}
 
   ngOnInit() {}
 
   home() {
     this.router.navigate(['home']);
   }
-<<<<<<< Updated upstream
-}
-=======
   createResep() {
     const email = this.angularFireAuth.currentUser.then((data) => data.email);
 
@@ -44,8 +53,6 @@ export class TulisResepPage implements OnInit {
         this.obj.photoUrl = e.target.result;
       };
       reader.readAsDataURL(input.files[0]);
-      // 
     }
   }
 }
->>>>>>> Stashed changes

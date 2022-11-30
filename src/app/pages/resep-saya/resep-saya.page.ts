@@ -34,6 +34,6 @@ export class ResepSayaPage implements OnInit {
     const resep = await this.afs
       .collection('Resep', (ref) => ref.where('user', '==', email))
       .valueChanges()
-      .subscribe((data) => console.log(data));
+      .subscribe((data) => console.log(data.toString()));
   }
 }

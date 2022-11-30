@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-tulis-resep',
@@ -9,40 +10,48 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class TulisResepPage implements OnInit {
   public obj: any = {};
-  judul: string = "";
-  bahan: string = "";
-  langkah: string = "";
-  jenis: string = "";
+  judul = '';
+  bahan = '';
+  langkah = '';
+  jenis = '';
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private afs: AngularFirestore,
+    public angularFireAuth: AngularFireAuth
+  ) {}
 
   ngOnInit() {}
 
   home() {
     this.router.navigate(['home']);
   }
-  createResep(){
-    var gambar = this.obj.photoUrl;
-    var judul = this.judul;
-    var bahan = this.bahan;
-    var langkah = this.langkah;
-    var jenis = this.jenis;
-    var user = "arkan@mail.com";
-    
-    
+  createResep() {
+    const email = this.angularFireAuth.currentUser.then((data) => data.email);
+
+    const resep = {
+      gambar: this.obj.photoUrl,
+      judul: this.judul,
+      bahan: this.bahan,
+      langkah: this.langkah,
+      jenis: this.jenis,
+      user: email,
+    };
 
     this.home();
+
+    const resepJSON = JSON.parse(JSON.stringify(resep));
+    return this.afs.collection('/Resep').add(resepJSON);
   }
-  
 
   onFileSelect(input) {
     console.log(input.files);
     if (input.files && input.files[0]) {
-      var reader = new FileReader();
+      const reader = new FileReader();
       reader.onload = (e: any) => {
         console.log(e.target.result);
         this.obj.photoUrl = e.target.result;
-      }
+      };
       reader.readAsDataURL(input.files[0]);
     }
   }

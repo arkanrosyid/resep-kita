@@ -26,8 +26,10 @@ export class TulisResepPage implements OnInit {
   home() {
     this.router.navigate(['home']);
   }
-  createResep() {
-    const email = this.angularFireAuth.currentUser.then((data) => data.email);
+  async createResep() {
+    const email = await this.angularFireAuth.currentUser.then(
+      (data) => data.email
+    );
 
     const resep = {
       gambar: this.obj.photoUrl,

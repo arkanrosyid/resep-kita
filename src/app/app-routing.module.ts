@@ -84,7 +84,7 @@ const routes: Routes = [
     canLoad: [AuthGuard],
   },
   {
-    path: 'resep-edit',
+    path: 'resep-edit/:id',
     loadChildren: () => import('./resep-edit/resep-edit.module').then( m => m.ResepEditPageModule)
   },
 

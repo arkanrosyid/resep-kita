@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-resep-page',
@@ -16,7 +17,8 @@ export class ResepPageComponent implements OnInit {
 
   editButton = false;
 
-  constructor(public angularFireAuth: AngularFireAuth) {}
+  constructor(public angularFireAuth: AngularFireAuth,
+    private router : Router) {}
 
   ngOnInit() {
     const emailA = this.getEmailA();
@@ -29,12 +31,11 @@ export class ResepPageComponent implements OnInit {
       this.editButton = true;
     }
 
-    console.log(emailAuth);
-    console.log(this.email);
     return emailAuth;
   }
 
-  edit() {
+  edit(doc) {
     console.log(true);
+    this.router.navigate(['resep-edit/'+doc])
   }
 }

@@ -55,8 +55,8 @@ export class RegisterPage implements OnInit, OnDestroy {
         users.email,
         users.password
       );
-      
-      users.password = "";
+
+      users.password = '';
 
       this.store.dispatch(
         register({ userRegister: this.registerForm.getForm().value })

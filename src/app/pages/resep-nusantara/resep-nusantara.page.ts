@@ -8,6 +8,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   styleUrls: ['./resep-nusantara.page.scss'],
 })
 export class ResepNusantaraPage implements OnInit {
+  reseps: { judul: any; gambar: any; doc: string; }[];
   constructor(private router: Router, private afs: AngularFirestore) {}
 
   ngOnInit() {
@@ -18,14 +19,23 @@ export class ResepNusantaraPage implements OnInit {
     this.router.navigate(['home']);
   }
 
-  resep() {
-    this.router.navigate(['resep']);
+  myResep(doc) {
+    this.router.navigate(['resep/'+doc]);
   }
 
   async getNusantara() {
-    const resep = await this.afs
-      .collection('Resep', (ref) => ref.where('jenis', '==', 'nusantara'))
-      .valueChanges()
-      .subscribe((data) => console.log(data));
+    this.afs
+    .collection('Resep', (ref) => ref.where('jenis', '==', 'nusantara'))
+    .snapshotChanges()
+    .subscribe(
+      (data) =>{
+            this.reseps = data.map((e) => ({
+            judul: e.payload.doc.data()['judul'],
+            gambar: e.payload.doc.data()['gambar'],
+            doc: e.payload.doc.id,
+            }))   ;
+                
+          }
+    );
   }
 }

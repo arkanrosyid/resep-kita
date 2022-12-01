@@ -62,7 +62,7 @@ const routes: Routes = [
     canLoad: [AuthGuard],
   },
   {
-    path: 'resep',
+    path: 'resep/:id',
     loadChildren: () =>
       import('./pages/resep/resep.module').then((m) => m.ResepPageModule),
     canLoad: [AuthGuard],
@@ -82,7 +82,8 @@ const routes: Routes = [
         (m) => m.ResepMancanegaraPageModule
       ),
     canLoad: [AuthGuard],
-  },  {
+  },
+  {
     path: 'resep-edit',
     loadChildren: () => import('./resep-edit/resep-edit.module').then( m => m.ResepEditPageModule)
   },

@@ -1,32 +1,26 @@
 <ion-header>
-  <ion-toolbar color="danger">
-    <ion-buttons (click)="home()" slot="start">
+  <ion-toolbar color="danger"
+    ><ion-buttons (click)="home()" slot="start">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-buttons>
     <ion-title>Resep Nusantara</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content
-  ><ion-list class="ion-margin-top">
-    <ion-item class="ion-margin-bottom" lines="none" button (click)="resep()">
-      <ion-thumbnail slot="start">
-        <img
-          alt="Makanan"
-          src="https://cdn0-production-images-kly.akamaized.net/bInf-QIvHKWJD_AwV88sY5BmVjU=/1x112:1000x675/680x383/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3245094/original/043061400_1600750232-shutterstock_1786027046.jpg"
-        />
-      </ion-thumbnail>
-      <ion-label>Rendang</ion-label>
-    </ion-item>
-
-    <ion-item lines="none" button (click)="resep()">
-      <ion-thumbnail slot="start">
-        <img
-          alt="makanan"
-          src="https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2021/05/12/3246816493.jpeg"
-        />
-      </ion-thumbnail>
-      <ion-label>Opor</ion-label>
-    </ion-item>
-  </ion-list>
-</ion-content>
+<ion-content>
+  <ion-card>
+    <ion-card-content *ngFor="let resep of reseps">
+      <ion-list >
+        <ion-item class="ion-margin-bottom" lines="none" button (click)="myResep(resep.doc)">
+          <ion-thumbnail slot="start">
+            <img
+              alt="Makanan"
+              src="{{resep.gambar}}"
+            />
+          </ion-thumbnail>
+          <ion-label>{{resep.judul}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card></ion-content
+>

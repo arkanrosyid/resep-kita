@@ -16,15 +16,12 @@ export class ResepSayaPage implements OnInit {
     private router: Router,
     private afs: AngularFirestore,
     public angularFireAuth: AngularFireAuth,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) {
-  //   this.activatedRoute.paramMap.subscribe((data) => {
-  //     console.log(data)  
-  // })
-
-
+    //   this.activatedRoute.paramMap.subscribe((data) => {
+    //     console.log(data)
+    // })
   }
-  
 
   ngOnInit() {
     this.getResep();
@@ -34,11 +31,10 @@ export class ResepSayaPage implements OnInit {
     this.router.navigate(['home']);
   }
 
-  myResep(doc){
+  myResep(doc) {
     // console.log(doc);
-    
-    this.router.navigate(['resep/'+doc ]);
-    
+
+    this.router.navigate(['resep/' + doc]);
   }
 
   async getResep() {
@@ -48,19 +44,12 @@ export class ResepSayaPage implements OnInit {
     this.afs
       .collection('Resep', (ref) => ref.where('user', '==', email))
       .snapshotChanges()
-      .subscribe(
-        (data) =>{
-              this.reseps = data.map((e) => ({
-              judul: e.payload.doc.data()['judul'],
-              gambar: e.payload.doc.data()['gambar'],
-              doc: e.payload.doc.id,
-              }))   ;
-                  
-            }
-      );
-
-     
-     
-  
+      .subscribe((data) => {
+        this.reseps = data.map((e) => ({
+          judul: e.payload.doc.data()['judul'],
+          gambar: e.payload.doc.data()['gambar'],
+          doc: e.payload.doc.id,
+        }));
+      });
   }
 }

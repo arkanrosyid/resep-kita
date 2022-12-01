@@ -6,10 +6,11 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./resep-page.component.scss'],
 })
 export class ResepPageComponent implements OnInit {
-  @Input() makanan: string;
+  @Input() judul: string;
+  @Input() gambar: string;
   @Input() jenis: string;
   @Input() bahan: string;
-  @Input() resep: string;
+  @Input() langkah: string;
 
   constructor() {}
 

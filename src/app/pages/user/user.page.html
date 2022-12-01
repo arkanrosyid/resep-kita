@@ -10,7 +10,9 @@
 <ion-content>
   <app-user-page
     [hasToken]="true"
-    nama="Arnold Poernomo"
-    keahlian="Chef"
+    *ngFor="let user of users"
+    nama="{{user.nama}}"
+    keahlian="{{user.kemampuan}}"
+    email="{{user.email}}"
   ></app-user-page>
 </ion-content>

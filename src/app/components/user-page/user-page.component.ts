@@ -11,6 +11,7 @@ export class UserPageComponent implements OnInit {
 
   @Input() nama: string;
   @Input() keahlian: string;
+  @Input() email: string;
 
   constructor(private router: Router) {}
 

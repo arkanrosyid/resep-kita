@@ -7,22 +7,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content
+<ion-content *ngFor ="let user of users"
   ><ion-list>
     <ion-item>
       <ion-label>Nama</ion-label>
-      <ion-input placeholder="Masukan Nama"></ion-input>
+      <ion-input id="name" placeholder="Masukan Nama" value="{{user.nama}}"></ion-input>
     </ion-item>
-    <!-- <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-input placeholder="Masukan Password"></ion-input>
-    </ion-item>
+
     <ion-item>
-      <ion-label>Konfirmasi Password</ion-label>
-      <ion-input placeholder="Konfirmasi Password"></ion-input>
-    </ion-item> -->
-    <ion-item>
-      <ion-select placeholder="Kemapuan">
+      <ion-select id="kemampuan" placeholder="Kemapuan" value="{{user.kemampuan}}">
         <ion-select-option value="pemula">Pemula</ion-select-option>
         <ion-select-option value="homecook">Home Cook</ion-select-option>
         <ion-select-option value="chef">Chef</ion-select-option>
@@ -30,5 +23,5 @@
     </ion-item>
   </ion-list>
 
-  <ion-button (click)="user()" color="danger" expand="full">Update</ion-button>
+  <ion-button (click)="edit()" color="danger" expand="full">Update</ion-button>
 </ion-content>

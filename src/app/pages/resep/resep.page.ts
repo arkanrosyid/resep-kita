@@ -10,7 +10,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class ResepPage implements OnInit {
   private id;
+  
   reseps: any;
+
   constructor(
     private router: Router,
     private afs: AngularFirestore,
@@ -27,24 +29,34 @@ export class ResepPage implements OnInit {
   }
   async getResep(){
     let docId = this.id.params.id;
-    console.log(docId);
+    // console.log(docId);
     
-      this.afs.collection('Resep').doc(docId).ref.get().then(function (data) {
-        if (data.exists) {
-         this.reseps = {
-          gambar : data['gambar'],
-          judul : data['judul'],
-         }
-          console.log(data.data());
-        } else {
-          console.log("There is no document!");
-        }
-      }).catch(function (error) {
-        console.log("There was an error getting your document:", error);
-      });}
-      
-    
-  
+      this.afs.collection('Resep').doc(docId).ref.get().then((data)=>{
+        // this.reseps = data.data()
+        this.reseps = ({
+                judul :data.data()['judul'],
+                gambar :data.data()['gambar'],
+                langkah :data.data()['langkah'],
+                bahan :data.data()['bahan'],
+                id :docId,
+              })
+      })
+      // then(function (data) {
+     
+      //     // console.log(data.data());
+          
+      //      this.reseps = ({
+      //       judul :data.data()['judul'],
+      //       gambar :data.data()['gambar'],
+      //       langkah :data.data()['langkah'],
+      //       bahan :data.data()['bahan'],
+      //       id :docId,
+      //     })
+
+          // console.log(this.reseps);
+          
+        // });
+  }
 
   home() {
     this.router.navigate(['home']);

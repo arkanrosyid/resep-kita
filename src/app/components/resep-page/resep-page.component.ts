@@ -14,38 +14,27 @@ export class ResepPageComponent implements OnInit {
   @Input() langkah: string;
   @Input() email: string;
 
-  constructor(
-    public angularFireAuth: AngularFireAuth
-  ) {}
+  editButton = false;
+
+  constructor(public angularFireAuth: AngularFireAuth) {}
 
   ngOnInit() {
     const emailA = this.getEmailA();
   }
-   async getEmailA(){
+  async getEmailA() {
     const emailAuth = await this.angularFireAuth.currentUser.then(
       (data) => data.email
     );
+    if (this.email === emailAuth) {
+      this.editButton = true;
+    }
 
     console.log(emailAuth);
     console.log(this.email);
     return emailAuth;
-   
-    
-    
   }
-  async edit(){
-    const emailAuth = await this.angularFireAuth.currentUser.then(
-      (data) => data.email
-    );
-    
-    console.log("cek");
-    if (this.email === emailAuth){
-      console.log("true");
-      
-    }else {
-     console.log("false");
-     
-    }
-   
+
+  edit() {
+    console.log(true);
   }
 }

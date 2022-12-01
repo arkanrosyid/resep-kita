@@ -33,7 +33,6 @@ export class ResepPage implements OnInit {
     const emailAuth = await this.angularFireAuth.currentUser.then(
       (data) => data.email
     );
-    
 
     const docId = this.id.params.id;
     console.log(docId);

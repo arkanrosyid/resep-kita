@@ -2,7 +2,8 @@ import { Resep } from './../../model/user/Resep';
 /* eslint-disable @typescript-eslint/dot-notation */
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-resep-edit',
@@ -13,14 +14,17 @@ export class ResepEditPage implements OnInit {
   reseps: any;
   obj: any;
   resepForm: Resep;
+  image : string;
   private id;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private router : Router,
+    public angularFireAuth: AngularFireAuth
   ) {
     this.activatedRoute.paramMap.subscribe((data) => {
-      // console.log(data);
+     
       this.id = data;
     });
   }
@@ -36,7 +40,8 @@ export class ResepEditPage implements OnInit {
       .snapshotChanges()
       .subscribe(
         (data) =>
-          (this.reseps = data.map((e) => ({
+          {
+            this.reseps = data.map((e) => ({
             judul: e.payload.doc.data()['judul'],
             gambar: e.payload.doc.data()['gambar'],
             jenis: e.payload.doc.data()['jenis'],
@@ -44,21 +49,59 @@ export class ResepEditPage implements OnInit {
             langkah: e.payload.doc.data()['langkah'],
             email: e.payload.doc.data()['user'],
             doc: e.payload.doc.id,
-          })))
+          }));
+        
+          this.image = this.reseps[0].gambar;
+        }
+         
+          
       );
+      
+  
   }
 
-  editResep() {}
+  editResep() {
+    
+    var judul =(document.getElementById('judul') as HTMLInputElement).value;
+    var bahan =(document.getElementById('bahan') as HTMLInputElement).value;
+    var langkah =(document.getElementById('langkah') as HTMLInputElement).value;
+    var jenis =(document.getElementById('jenis') as HTMLInputElement).value;
+    // if (this.obj.photoUrl === null){
+    //   this.obj.photoUrl = this.image;
+    // }
+
+    const docId = this.id.params.id;
+   
+    const resepL = this.afs.collection('Resep').doc('/' + docId)
+    resepL.update({judul : judul});
+    resepL.update({bahan : bahan});
+    resepL.update({langkah : langkah});
+    resepL.update({jenis : jenis});
+    resepL.update({gambar :  this.image});
+    
+  }
 
   onFileSelect(input) {
-    console.log(input.files);
+
     if (input.files && input.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        console.log(e.target.result);
-        this.obj.photoUrl = e.target.result;
+
+       this.image = e.target.result;
       };
       reader.readAsDataURL(input.files[0]);
     }
+  }
+  home (){
+    const docId = this.id.params.id;
+    this.router.navigate(['/resep/'+ docId]);
+  }
+
+  deleteResep(){
+    const docId = this.id.params.id;
+    const resepL = this.afs.collection('Resep').doc('/' + docId);
+    resepL.delete();
+    this.router.navigate(['/home']);
+
   }
 }

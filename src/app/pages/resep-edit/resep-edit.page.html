@@ -8,20 +8,23 @@
 </ion-header>
 
 <ion-content *ngFor="let resep of reseps">
-  <form action="formGroup]="resepForm.getForm()">
+ 
     <ion-list>
       <ion-list-header>
         <ion-label>Edit Resep</ion-label>
       </ion-list-header>
       <ion-item>
         <ion-label>Nama Resep </ion-label><br />
-        <ion-input placeholder="Ketik Disini" value="{{resep.judul}}">
+        <ion-input  id="judul" placeholder="Ketik Disini" value="{{resep.judul}}">
         </ion-input>
       </ion-item>
-      <ion-item> </ion-item>
+      <ion-item> 
+         <img id="gambar" src="{{resep.gambar}}" />
+        </ion-item>
       <ion-item>
         <ion-label floating>Foto Resep</ion-label>
-        <img src="{{resep.gambar}}" />
+       
+        
         <ion-input
           type="file"
           (change)="onFileSelect($event.target)"
@@ -29,7 +32,7 @@
       </ion-item>
       <ion-item>
         <ion-label>Bahan</ion-label>
-        <ion-textarea
+        <ion-textarea id="bahan"
           [clearOnEdit]="true"
           [autoGrow]="true"
           placeholder="Ketik Disini"
@@ -38,10 +41,10 @@
       </ion-item>
       <ion-item>
         <ion-label>Langkah</ion-label>
-        <ion-textarea value="{{resep.langkah}}"></ion-textarea>
+        <ion-textarea id="langkah" value="{{resep.langkah}}"></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-select placeholder="Jenis Makanan">
+        <ion-select placeholder="Jenis Makanan" value="{{resep.jenis}}" id="jenis">
           <ion-select-option value="nusantara"
             >Resep Nusantara</ion-select-option
           >
@@ -65,5 +68,5 @@
         >Hapus</ion-button
       >
     </ion-list>
-  </form></ion-content
+</ion-content
 >

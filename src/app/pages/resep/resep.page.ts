@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import * as firebase from 'firebase/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-resep',
@@ -16,7 +17,8 @@ export class ResepPage implements OnInit {
   constructor(
     private router: Router,
     private afs: AngularFirestore,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public angularFireAuth: AngularFireAuth
   ) {
     this.activatedRoute.paramMap.subscribe((data) => {
       // console.log(data);
@@ -28,6 +30,11 @@ export class ResepPage implements OnInit {
     this.getResep();
   }
   async getResep() {
+    const emailAuth = await this.angularFireAuth.currentUser.then(
+      (data) => data.email
+    );
+    
+
     const docId = this.id.params.id;
     console.log(docId);
 
@@ -42,6 +49,7 @@ export class ResepPage implements OnInit {
             jenis: e.payload.doc.data()['jenis'],
             bahan: e.payload.doc.data()['bahan'],
             langkah: e.payload.doc.data()['langkah'],
+            email: e.payload.doc.data()['user'],
             doc: e.payload.doc.id,
           })))
       );

@@ -23,5 +23,9 @@
         <ion-label>{{ langkah }}</ion-label>
       </ion-item>
     </ion-list>
+    <div  *ngIf="this.email == emailA">
+      <ion-button (click)="edit()" color="danger" expand="full">Edit</ion-button>
+    </div>
+
   </ion-card-content>
 </ion-card>

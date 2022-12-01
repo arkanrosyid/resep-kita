@@ -85,9 +85,11 @@ const routes: Routes = [
   },
   {
     path: 'resep-edit/:id',
-    loadChildren: () => import('./resep-edit/resep-edit.module').then( m => m.ResepEditPageModule)
+    loadChildren: () =>
+      import('./pages/resep-edit/resep-edit.module').then(
+        (m) => m.ResepEditPageModule
+      ),
   },
-
 ];
 
 @NgModule({

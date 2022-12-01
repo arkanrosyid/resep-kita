@@ -14,11 +14,14 @@ export class ResepPageComponent implements OnInit {
   @Input() bahan: string;
   @Input() langkah: string;
   @Input() email: string;
+  @Input() doc: string;
 
   editButton = false;
 
-  constructor(public angularFireAuth: AngularFireAuth,
-    private router : Router) {}
+  constructor(
+    public angularFireAuth: AngularFireAuth,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     const emailA = this.getEmailA();
@@ -36,6 +39,6 @@ export class ResepPageComponent implements OnInit {
 
   edit(doc) {
     console.log(true);
-    this.router.navigate(['resep-edit/'+doc])
+    this.router.navigate(['resep-edit/' + doc]);
   }
 }

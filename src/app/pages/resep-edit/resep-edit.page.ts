@@ -1,3 +1,5 @@
+import { Resep } from './../../model/user/Resep';
+/* eslint-disable @typescript-eslint/dot-notation */
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
@@ -8,48 +10,45 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./resep-edit.page.scss'],
 })
 export class ResepEditPage implements OnInit {
-
-  private id;
-  reseps:any;
+  reseps: any;
   obj: any;
+  resepForm: Resep;
+  private id;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private afs: AngularFirestore,
+    private afs: AngularFirestore
   ) {
     this.activatedRoute.paramMap.subscribe((data) => {
       // console.log(data);
       this.id = data;
-    });  
-   }
+    });
+  }
 
   ngOnInit() {
     this.getResep();
   }
 
   async getResep() {
-    
     const docId = this.id.params.id;
     this.afs
       .collection('Resep', (ref) => ref.where('__name__', '==', docId))
       .snapshotChanges()
       .subscribe(
         (data) =>
-        (this.reseps = data.map((e) => ({
-          judul: e.payload.doc.data()['judul'],
-          gambar: e.payload.doc.data()['gambar'],
-          jenis: e.payload.doc.data()['jenis'],
-          bahan: e.payload.doc.data()['bahan'],
-          langkah: e.payload.doc.data()['langkah'],
-          email: e.payload.doc.data()['user'],
-          doc: e.payload.doc.id,
-        })))
-
-       
-        
+          (this.reseps = data.map((e) => ({
+            judul: e.payload.doc.data()['judul'],
+            gambar: e.payload.doc.data()['gambar'],
+            jenis: e.payload.doc.data()['jenis'],
+            bahan: e.payload.doc.data()['bahan'],
+            langkah: e.payload.doc.data()['langkah'],
+            email: e.payload.doc.data()['user'],
+            doc: e.payload.doc.id,
+          })))
       );
-      console.log(this.reseps);
   }
+
+  editResep() {}
 
   onFileSelect(input) {
     console.log(input.files);
@@ -62,6 +61,4 @@ export class ResepEditPage implements OnInit {
       reader.readAsDataURL(input.files[0]);
     }
   }
-  
-
 }

@@ -35,7 +35,6 @@ export class ResepPage implements OnInit {
     );
 
     const docId = this.id.params.id;
-    
 
     const reseps = this.afs
       .collection('Resep', (ref) => ref.where('__name__', '==', docId))

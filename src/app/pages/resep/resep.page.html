@@ -9,9 +9,13 @@
 
 <ion-content
   ><app-resep-page
-    makanan="Rendang"
-    jenis="Resep Nusantara"
-    bahan="Sapi"
-    resep="Masaklah dengan...."
+    *ngFor="let resep of reseps"
+    judul="{{resep.judul}}"
+    jenis="{{resep.jenis}}"
+    bahan="{{resep.bahan}}"
+    langkah="{{resep.langkah}}"
+    gambar="{{resep.gambar}}"
+    email="{{resep.email}}"
+    doc="{{resep.doc}}"
   ></app-resep-page>
 </ion-content>

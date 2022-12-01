@@ -5,5 +5,4 @@ export class Resep {
   langkah: string;
   gambar: string;
   user: string;
-  }
-  
+}

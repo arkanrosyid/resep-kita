@@ -36,8 +36,9 @@ export class UserPage implements OnInit {
       });
   }
   home() {
-    this.angularFireAuth.signOut().then(() => {
-      this.router.navigate(['/login']);
-   });
+    this.router.navigate(['home']);
+  }
+  login() {
+    
   }
 }

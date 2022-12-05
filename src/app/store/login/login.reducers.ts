@@ -1,5 +1,5 @@
 import { appInitialState } from './../AppInitialState';
-import { login, loginSuccess, loginFail } from './login.actions';
+import { login, loginSuccess, loginFail, logout } from './login.actions';
 import { createReducer, on } from '@ngrx/store';
 import { LoginState } from './loginState';
 
@@ -23,6 +23,12 @@ const reducer = createReducer(
     error: action.error,
     isLoggedIn: false,
     isLoggingIn: false,
+  })),
+  on(logout, (currentState) => ({
+    ...currentState,
+    error: null,
+    isLoggedIn: false,
+    isloggingIn: false,
   }))
 );
 

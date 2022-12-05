@@ -9,4 +9,5 @@ export const loginSuccess = createAction(
   '[login] success',
   props<{ user: User }>()
 );
+export const logout = createAction('[logout]');
 export const loginFail = createAction('[login] fail', props<{ error: any }>());

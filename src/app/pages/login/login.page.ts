@@ -1,4 +1,3 @@
-import { UserRegister } from './../../model/user/UserRegister';
 import { ToastController, NavController } from '@ionic/angular';
 import { login } from './../../store/login/login.actions';
 import { LoginState } from './../../store/login/loginState';
